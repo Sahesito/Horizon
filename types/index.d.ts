@@ -33,6 +33,7 @@ declare type User = {
   dwollaCustomerId: string;
   firstName: string;
   lastName: string;
+  name: string;
   address1: string;
   city: string;
   state: string;
@@ -74,6 +75,7 @@ declare type Transaction = {
   category: string;
   date: string;
   image: string;
+  type: string;
   $createdAt: string;
   channel: string;
   senderBankId: string;
@@ -93,7 +95,7 @@ declare type Bank = {
 declare type AccountTypes =
   | "depository"
   | "credit"
-  | "loan"
+  | "loan "
   | "investment"
   | "other";
 
@@ -177,6 +179,15 @@ declare interface PlaidLinkProps {
   dwollaCustomerId?: string;
 }
 
+// declare type User = sdk.Models.Document & {
+//   accountId: string;
+//   email: string;
+//   name: string;
+//   items: string[];
+//   accessToken: string;
+//   image: string;
+// };
+
 declare interface AuthFormProps {
   type: "sign-in" | "sign-up";
 }
@@ -200,6 +211,7 @@ declare interface TotalBalanceBoxProps {
 
 declare interface FooterProps {
   user: User;
+  type?: 'mobile' | 'desktop'
 }
 
 declare interface RightSidebarProps {
@@ -245,19 +257,19 @@ declare interface PaymentTransferFormProps {
 }
 
 // Actions
-declare interface getAccountsProps {
+declare interface GetAccountsProps {
   userId: string;
 }
 
-declare interface getAccountProps {
+declare interface GetAccountProps {
   appwriteItemId: string;
 }
 
-declare interface getInstitutionProps {
+declare interface GetInstitutionProps {
   institutionId: string;
 }
 
-declare interface getTransactionsProps {
+declare interface GetTransactionsProps {
   accessToken: string;
 }
 
@@ -278,25 +290,25 @@ declare interface CreateTransactionProps {
   email: string;
 }
 
-declare interface getTransactionsByBankIdProps {
+declare interface GetTransactionsByBankIdProps {
   bankId: string;
 }
 
-declare interface signInProps {
+declare interface SignInProps {
   email: string;
   password: string;
 }
 
-declare interface getUserInfoProps {
+declare interface GetUserInfoProps {
   userId: string;
 }
 
-declare interface exchangePublicTokenProps {
+declare interface ExchangePublicTokenProps {
   publicToken: string;
   user: User;
 }
 
-declare interface createBankAccountProps {
+declare interface CreateBankAccountProps {
   accessToken: string;
   userId: string;
   accountId: string;
@@ -305,14 +317,14 @@ declare interface createBankAccountProps {
   shareableId: string;
 }
 
-declare interface getBanksProps {
+declare interface GetBanksProps {
   userId: string;
 }
 
-declare interface getBankProps {
+declare interface GetBankProps {
   documentId: string;
 }
 
-declare interface getBankByAccountIdProps {
+declare interface GetBankByAccountIdProps {
   accountId: string;
 }
