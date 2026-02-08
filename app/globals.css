@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tailwindcss-animate";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
@@ -223,32 +222,80 @@
   to { height: 0; }
 }
 
+@utility text-10 {
+  font-size: 10px;
+  line-height: 14px;
+}
+
+@utility text-12 {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@utility text-14 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@utility text-16 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility text-18 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@utility text-20 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+@utility text-24 {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+@utility text-26 {
+  font-size: 26px;
+  line-height: 32px;
+}
+
+@utility text-30 {
+  font-size: 30px;
+  line-height: 38px;
+}
+
+@utility text-36 {
+  font-size: 36px;
+  line-height: 44px;
+}
+
+@utility flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@utility animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+
+@utility animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+
 @layer utilities {
-  .animate-accordion-down {
-    animation: accordion-down 0.2s ease-out;
-  }
-  
-  .animate-accordion-up {
-    animation: accordion-up 0.2s ease-out;
-  }
-
-  .text-10 { @apply text-[10px] leading-[14px]; }
-  .text-12 { @apply text-[12px] leading-[16px]; }
-  .text-14 { @apply text-[14px] leading-[20px]; }
-  .text-16 { @apply text-[16px] leading-[24px]; }
-  .text-18 { @apply text-[18px] leading-[22px]; }
-  .text-20 { @apply text-[20px] leading-[24px]; }
-  .text-24 { @apply text-[24px] leading-[30px]; }
-  .text-26 { @apply text-[26px] leading-[32px]; }
-  .text-30 { @apply text-[30px] leading-[38px]; }
-  .text-36 { @apply text-[36px] leading-[44px]; }
-
-  .flex-center { @apply flex items-center justify-center; }
   .text14_padding10 { @apply text-14 px-4 py-2.5 font-semibold; }
   .header-2 { @apply text-18 font-semibold text-gray-900; }
 
   .input-class {
     @apply text-16 placeholder:text-16 rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500;
+  }
+
+  .sheet-content button {
+    @apply focus:ring-0 focus-visible:ring-transparent focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:border-none;
   }
 
   .form-item { @apply flex flex-col gap-1.5; }
@@ -257,12 +304,61 @@
   .form-btn { @apply text-16 rounded-lg border border-bankGradient bg-bank-gradient font-semibold text-white shadow-form; }
   .form-link { @apply text-14 cursor-pointer font-medium text-bankGradient; }
 
-  .sheet-content button {
-    @apply focus:ring-0 focus-visible:ring-transparent focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:border-none !important;
+  .home {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .home::-webkit-scrollbar {
+    display: none;
+  }
+  
+  @media (max-width: 1279px) {
+    .home {
+      max-height: 100vh;
+      overflow-y: scroll;
+    }
   }
 
-  .home { @apply no-scrollbar flex w-full flex-row max-xl:max-h-screen max-xl:overflow-y-scroll; }
-  .home-content { @apply no-scrollbar flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll; }
+  .home-content {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.75rem 1.25rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .home-content::-webkit-scrollbar {
+    display: none;
+  }
+  
+  @media (min-width: 640px) {
+    .home-content {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .home-content {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .home-content {
+      max-height: 100vh;
+      overflow-y: scroll;
+    }
+  }
+
   .home-header { @apply flex flex-col justify-between gap-8; }
 
   .total-balance { @apply flex w-full items-center gap-4 rounded-xl border border-gray-200 p-4 shadow-chart sm:gap-6 sm:p-6; }
@@ -272,7 +368,35 @@
 
   .recent-transactions { @apply flex w-full flex-col gap-6; }
   .recent-transactions-label { @apply text-20 md:text-24 font-semibold text-gray-900; }
-  .recent-transactions-tablist { @apply custom-scrollbar mb-8 flex w-full flex-nowrap; }
+  
+  .recent-transactions-tablist {
+    margin-bottom: 2rem;
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+  
+  .recent-transactions-tablist::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+    border-radius: 2px;
+  }
+  
+  .recent-transactions-tablist::-webkit-scrollbar-track {
+    background: #dddddd;
+  }
+  
+  .recent-transactions-tablist::-webkit-scrollbar-thumb {
+    background: #5c5c7b;
+    border-radius: 50px;
+  }
+  
+  .recent-transactions-tablist::-webkit-scrollbar-thumb:hover {
+    background: #7878a3;
+  }
+  
+  .view-all-btn { @apply text-14 rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700; }
+
   .transactions { @apply flex max-h-screen w-full flex-col gap-8 overflow-y-scroll bg-gray-25 p-8 xl:py-12; }
   .transactions-header { @apply flex w-full flex-col items-start justify-between gap-8 md:flex-row; }
   .transactions-account { @apply flex flex-col justify-between gap-4 rounded-lg border-y bg-blue-600 px-4 py-5 md:flex-row; }
@@ -283,7 +407,29 @@
   .sidebar-link { @apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start; }
   .sidebar-label { @apply text-16 font-semibold text-black-2 max-xl:hidden; }
 
-  .right-sidebar { @apply no-scrollbar hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w-[355px] xl:overflow-y-scroll !important; }
+  .right-sidebar {
+    display: none;
+    height: 100vh;
+    max-height: 100vh;
+    flex-direction: column;
+    border-left-width: 1px;
+    border-color: rgb(234 236 240);
+    width: 355px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .right-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  @media (min-width: 1280px) {
+    .right-sidebar {
+      display: flex;
+      overflow-y: scroll;
+    }
+  }
+
   .profile-banner { @apply h-[120px] w-full bg-gradient-mesh bg-cover bg-no-repeat; }
   .profile { @apply relative flex px-6 max-xl:justify-center; }
   .profile-img { @apply flex-center absolute -top-8 size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-profile; }
@@ -316,14 +462,39 @@
   .auth-asset { @apply flex h-screen w-full sticky top-0 items-center justify-end bg-sky-1 max-lg:hidden; }
   .auth-form { @apply flex min-h-screen w-full max-w-[420px] flex-col justify-center gap-5 py-10 md:gap-8; }
 
-  .payment-transfer { @apply no-scrollbar flex flex-col overflow-y-scroll bg-gray-25 p-8 md:max-h-screen xl:py-12; }
+  .payment-transfer {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    background-color: rgb(252 252 253);
+    padding: 2rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .payment-transfer::-webkit-scrollbar {
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    .payment-transfer {
+      max-height: 100vh;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .payment-transfer {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+
   .payment-transfer_form-item { @apply flex w-full max-w-[850px] flex-col gap-3 md:flex-row lg:gap-8; }
   .payment-transfer_form-content { @apply flex w-full max-w-[280px] flex-col gap-2; }
   .payment-transfer_form-details { @apply flex flex-col gap-1 border-t border-gray-200 pb-5 pt-6; }
   .payment-transfer_btn-box { @apply mt-5 flex w-full max-w-[850px] gap-3 border-gray-200 py-5; }
-  .payment-transfer_btn { @apply text-14 w-full bg-bank-gradient font-semibold text-white shadow-form !important; }
+  .payment-transfer_btn { @apply text-14 w-full bg-bank-gradient font-semibold text-white shadow-form; }
 
-  .view-all-btn { @apply text-14 rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700; }
   .root-layout { @apply flex h-16 items-center justify-between p-5 shadow-creditCard sm:p-8 md:hidden; }
 
   .footer { @apply flex cursor-pointer items-center justify-between gap-2 py-6; }
