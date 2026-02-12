@@ -4,7 +4,15 @@ import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger } from "@/components/ui/select";
+import { 
+    Select, 
+    SelectContent, 
+    SelectGroup, 
+    SelectItem, 
+    SelectLabel, 
+    SelectTrigger,
+    SelectValue 
+} from "@/components/ui/select";
 import { formUrlQuery, formatAmount } from "@/lib/utils";
 
 export const BankDropdown = ({
@@ -14,44 +22,47 @@ export const BankDropdown = ({
 }: BankDropdownProps) => {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const [selected, setSeclected] = useState(accounts[0]);
+    const [selected, setSelected] = useState(accounts[0]?.appwriteItemId || "");
 
     const handleBankChange = (id: string) => {
-        const account = accounts.find((account) => account.appwriteItemId === id)!;
+        const account = accounts.find((account) => account.appwriteItemId === id);
+        
+        if (!account) return;
 
-        setSeclected(account);
+        setSelected(id);
+        
+        if (setValue) {
+            setValue("senderBank", id);
+        }
+
         const newUrl = formUrlQuery({
             params: searchParams.toString(),
             key: "id",
             value: id,
         });
         router.push(newUrl, { scroll: false });
-
-        if (setValue) {
-            setValue("senderBank", id);
-        }
     };
 
+    const currentAccount = accounts.find((acc) => acc.appwriteItemId === selected) || accounts[0];
+
     return (
-        <Select
-            defaultValue={selected.id}
-            onValueChange={(value) => handleBankChange(value)}
-        >
-            <SelectTrigger
-                className={`flex w-full bg-white gap-3 md:w-[300px] ${otherStyles}`}
-            >
-                <Image
-                    src="icons/credit-card.svg"
-                    width={20}
-                    height={20}
-                    alt="account"
-                />
-                <p className="line-clamp-1 w-full text-left">{selected.name}</p>
+        <Select value={selected} onValueChange={handleBankChange}>
+            <SelectTrigger className={`w-full gap-3 md:w-[300px] ${otherStyles}`}>
+                <SelectValue>
+                    <div className="flex items-center gap-3">
+                        <Image
+                            src="/icons/credit-card.svg"
+                            width={20}
+                            height={20}
+                            alt="account"
+                        />
+                        <span className="line-clamp-1">
+                            {currentAccount?.name || "Select a bank"}
+                        </span>
+                    </div>
+                </SelectValue>
             </SelectTrigger>
-            <SelectContent
-                className={`w-full bg-white md:w-[300px] ${otherStyles}`}
-                align="end"
-            >
+            <SelectContent className={`w-full bg-white md:w-[300px] ${otherStyles}`} align="end">
                 <SelectGroup>
                     <SelectLabel className="py-2 font-normal text-gray-500">
                         Select a bank to display
@@ -62,7 +73,7 @@ export const BankDropdown = ({
                             value={account.appwriteItemId}
                             className="cursor-pointer border-t"
                         >
-                            <div className="flex flex-col ">
+                            <div className="flex flex-col">
                                 <p className="text-16 font-medium">{account.name}</p>
                                 <p className="text-14 font-medium text-blue-600">
                                     {formatAmount(account.currentBalance)}

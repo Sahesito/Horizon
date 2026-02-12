@@ -42,7 +42,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
             name: "",
             email: "",
             amount: "",
-            senderBank: "",
+            senderBank: accounts[0]?.appwriteItemId || "",
             sharableId: "",
         },
     });
@@ -57,22 +57,27 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
             });
             const senderBank = await getBank({ documentId: data.senderBank });
 
+            if (!senderBank || !receiverBank) {
+                console.error("Sender or receiver bank not found");
+                setIsLoading(false);
+                return;
+            }
+
             const transferParams = {
                 sourceFundingSourceUrl: senderBank.fundingSourceUrl,
                 destinationFundingSourceUrl: receiverBank.fundingSourceUrl,
                 amount: data.amount,
             };
-            // create transfer
+
             const transfer = await createTransfer(transferParams);
 
-            // create transfer transaction
             if (transfer) {
                 const transaction = {
                     name: data.name,
                     amount: data.amount,
-                    senderId: senderBank.userId.$id,
+                    senderId: senderBank.userId,
                     senderBankId: senderBank.$id,
-                    receiverId: receiverBank.userId.$id,
+                    receiverId: receiverBank.userId,
                     receiverBankId: receiverBank.$id,
                     email: data.email,
                 };

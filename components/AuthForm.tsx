@@ -27,7 +27,7 @@ const AuthForm = ({ type }: { type: string }) => {
         defaultValues: {
             email: "",
             password: "",
-            // ✅ Agrega TODOS los campos del sign-up
+
             firstName: "",
             lastName: "",
             address1: "",
