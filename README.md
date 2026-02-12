@@ -1,6 +1,7 @@
 # 🏦 Horizon – Aplicación Bancaria Full-Stack
 
 Aplicación bancaria moderna desarrollada con Next.js 16, que permite conectar múltiples cuentas bancarias, visualizar transacciones y realizar transferencias de fondos de forma segura y en tiempo real.
+
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 
