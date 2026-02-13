@@ -1,56 +1,57 @@
-# 🏦 Horizon – Aplicación Bancaria Full-Stack
+# 🏦 Horizon – Full-Stack Banking Application
 
-Aplicación bancaria moderna desarrollada con Next.js 16, que permite conectar múltiples cuentas bancarias, visualizar transacciones y realizar transferencias de fondos de forma segura y en tiempo real.
+A modern banking application built with Next.js 16 that allows users to connect multiple bank accounts, view transactions, and securely transfer funds in real time.
 
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-## ✨ Funcionalidades Principales
+## ✨ Key Features
 
-### 🔐 Autenticación y Seguridad
-- Autenticación segura con Appwrite
-- Cookies HTTP-only para manejo de sesión
-- Rutas protegidas con middleware
-- Validación backend con Zod
-- Manejo seguro de credenciales vía variables de entorno
+### 🔐 Authentication & Security
+- Secure authentication with Appwrite
+- HTTP-only cookies for session management
+- Protected routes using middleware
+- Backend validation with Zod
+- Secure credential handling via environment variables
+  
+### 🏦 Bank Account Management
+- Connect multiple bank accounts using Plaid
+- Real-time balance display
+- Support for checking, savings, and credit accounts
+- Detailed account information
+- Shareable account identifiers
 
-### 🏦 Gestión de Cuentas Bancarias
-- Conexión de múltiples cuentas mediante Plaid
-- Visualización de saldos en tiempo real
-- Soporte para cuentas corrientes, ahorros y crédito
-- Información detallada por cuenta
-- Identificadores compartibles
+### 💳 Transaction History
+- Complete transaction list
+- Advanced filtering and search
+- Automatic categorization (Food, Travel, Transfers, etc.)
+- Real-time status updates
+- Pagination for large datasets
 
-### 💳 Historial de Transacciones
-- Lista completa de movimientos
-- Filtros y búsqueda avanzada
-- Categorización automática (Comida, Viajes, Transferencias, etc.)
-- Estado en tiempo real
-- Paginación para grandes volúmenes de datos
+### 💸 Fund Transfers
+- Transfers between connected accounts
+- ACH payment integration with Dwolla
+- Custom notes and descriptions
+- Transfer status tracking
 
-### 💸 Transferencias de Fondos
-- Transferencias entre cuentas conectadas
-- Integración con Dwolla para pagos ACH
-- Notas y descripciones personalizadas
-- Seguimiento del estado de cada transferencia
+### 📊 Financial Dashboard
+- Consolidated total balance
+- Interactive donut chart
+- Recent transactions widget
+- Spending category analysis
+- Account performance metrics
 
-### 📊 Dashboard Financiero
-- Balance total consolidado
-- Gráfico interactivo tipo dona
-- Widget de transacciones recientes
-- Análisis de categorías de gasto
-- Métricas de rendimiento por cuenta
+### 📱 Responsive Design
 
-### 📱 Diseño Responsive
-- Adaptado a móvil, tablet y escritorio
-- Navegación optimizada para dispositivos táctiles
-- Drawer lateral para móvil
-- Preparado para PWA
+- Optimized for mobile, tablet, and desktop
+- Touch-friendly navigation
+- Mobile sidebar drawer
+- PWA-ready
 
 
-## 🛠 Stack Tecnológico
+## 🛠 Tech Stack
 
 ### Frontend
 - **Framework:** Next.js 16 (App Router)
@@ -62,51 +63,37 @@ Aplicación bancaria moderna desarrollada con Next.js 16, que permite conectar m
 - **Gráficos:** Chart.js con react-chartjs-2
 - **Iconos:** Lucide React
 
-### Backend & Servicios
+### Backend & Services
 - **Backend-as-a-Service:** Appwrite
 - **API Bancaria:** Plaid
 - **Procesamiento de Pagos:** Dwolla
 - **Monitoreo de Errores:** Sentry
 
-### Herramientas de Desarrollo
+### Development Tools
 - **Gestor de Paquetes:** npm
 - **Linting:** ESLint 9
 - **Compilador:** React Compiler (Babel plugin)
 - **Type Checking:** TypeScript modo estricto
 
 
-## ⚙️ Requisitos Previos
+## 🚀 Installation
 
-Antes de comenzar, asegúrate de tener instalado:
-- Node.js 20.x o superior
-- npm o yarn
-- Git
-
-También necesitarás cuentas y claves API de:
-- [Appwrite](https://appwrite.io/)
-- [Plaid](https://plaid.com/)
-- [Dwolla](https://www.dwolla.com/)
-- [Sentry](https://sentry.io/) (opcional, para monitoreo de errores)
-
-
-## 🚀 Instalación
-
-### 1️⃣ Clonar el repositorio
+### 1️⃣ Clone the repository
 
 ```bash
 git clone https://github.com/tuusuario/horizon-banking.git
 cd horizon-banking
 ```
 
-### 2️⃣ Instalar dependencias
+### 2️⃣ Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3️⃣ Configurar variables de entorno
+### 3️⃣ Configure environment variables
 
-Crear archivo `.env.local` en la raíz del proyecto:
+Create a `.env.local` file in the project root:
 
 ```env
 # Next.js
@@ -135,72 +122,44 @@ DWOLLA_BASE_URL=https://api-sandbox.dwolla.com
 DWOLLA_ENV=sandbox
 ```
 
-### 4️⃣ Configurar Appwrite
-
-1. Crear un nuevo proyecto en Appwrite
-2. Crear una base de datos con las siguientes colecciones:
-   - **users** (con atributos: userId, email, firstName, lastName, address1, city, state, postalCode, dateOfBirth, ssn, dwollaCustomerId, dwollaCustomerUrl)
-   - **bank** (con atributos: userId, bankId, accountId, accessToken, fundingSourceUrl, shareableId)
-   - **transaction** (con atributos: name, amount, senderId, senderBankId, receiverId, receiverBankId, email, channel, category)
-
-3. Actualizar `.env.local` con los IDs de la base de datos y colecciones
-
-### 5️⃣ Ejecutar en desarrollo
+### 4️⃣ Ejecutar en desarrollo
 
 ```bash
 npm run dev
 ```
 
-Abrir en el navegador: 👉 [http://localhost:3000](http://localhost:3000)
+Open in your browser: 👉 [http://localhost:3000](http://localhost:3000)
 
 
-## 🧠 Arquitectura de Flujo
+## 🧠 Flow Architecture
 
 ```
 Usuario → Server Action (Next.js) → API Externa (Plaid/Dwolla/Appwrite) → Base de Datos → Actualización UI
 ```
 
+## 🔒 Security Features
 
-### Integración con Plaid
-1. Usuario hace clic en "Conectar Banco"
-2. Se abre el modal de Plaid Link
-3. Usuario se autentica con su banco
-4. Plaid retorna un token público
-5. La app intercambia el token público por un token de acceso
-6. Token de acceso se almacena de forma segura en Appwrite
+- HTTP-only cookies for session management
+- Server-side validation with Zod schemas
+- Secure storage of sensitive data in Appwrite
+- Environment variables for API keys
+- CSRF protection via Next.js
+- Input sanitization and validation
 
-### Integración con Dwolla
-1. Usuario inicia transferencia con datos del destinatario
-2. La app crea cliente Dwolla si es necesario
-3. Las fuentes de fondos se vinculan vía token de procesador Plaid
-4. Se inicia transferencia ACH entre fuentes de fondos
-5. Transacción se registra en Appwrite
-
-## 🔒 Características de Seguridad
-
-- Cookies HTTP-only para gestión de sesiones
-- Validación server-side con esquemas Zod
-- Almacenamiento seguro de datos sensibles en Appwrite
-- Variables de entorno para claves API
-- Protección CSRF vía Next.js
-- Sanitización y validación de inputs
-
-
-## 🧪 Credenciales de Prueba
+## 🧪 Test Credentials
 
 ### Plaid Sandbox
-Para pruebas en modo sandbox, usar:
-- **Usuario:** `user_good`
-- **Contraseña:** `pass_good`
+For sandbox testing, use:
+- **Username:** `user_good`
+- **Password:** `pass_good`
 
-Bancos de prueba disponibles:
+Available test banks:
 - Chase Bank
 - Bank of America
 - Wells Fargo
 - Citibank
 
-
-## 📷 Capturas
+## 📷 Screenshots
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/28176285-51ff-4667-8f8d-558667b57052" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/20cb43b9-3bb8-42b5-8055-fe4c27d08db3" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8401eb8a-df51-4f40-ac36-e8fe9fade2df" />
