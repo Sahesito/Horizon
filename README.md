@@ -122,7 +122,7 @@ DWOLLA_BASE_URL=https://api-sandbox.dwolla.com
 DWOLLA_ENV=sandbox
 ```
 
-### 4️⃣ Ejecutar en desarrollo
+### 4️⃣ Run in development
 
 ```bash
 npm run dev
