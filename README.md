@@ -130,13 +130,6 @@ npm run dev
 
 Open in your browser: 👉 [http://localhost:3000](http://localhost:3000)
 
-
-## 🧠 Flow Architecture
-
-```
-Usuario → Server Action (Next.js) → API Externa (Plaid/Dwolla/Appwrite) → Base de Datos → Actualización UI
-```
-
 ## 🔒 Security Features
 
 - HTTP-only cookies for session management
